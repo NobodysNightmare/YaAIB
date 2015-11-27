@@ -4,9 +4,11 @@ module YaAIB
   class Planet
     include Positioned
 
-    attr_reader :regeneration, :supply, :owner
+    attr_reader :regeneration, :owner
+    attr_accessor :supply
 
-    def initialize(regeneration, owner: nil)
+    def initialize(position, regeneration, owner: nil)
+      @position = position
       @regeneration = regeneration
       @owner = owner
       @supply = 0
@@ -25,8 +27,8 @@ module YaAIB
       end
 
       if supply <= 0
-        owner = fleet.owner
-        @supply = 0
+        @owner = fleet.owner
+        @supply = @supply.abs
       end
     end
   end

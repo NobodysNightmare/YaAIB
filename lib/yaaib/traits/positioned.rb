@@ -1,3 +1,5 @@
+require 'yaaib/vector'
+
 module YaAIB
   module Positioned
     def position
@@ -5,11 +7,17 @@ module YaAIB
     end
 
     def distance_to(other)
-      (position - other.position).length
+      other = other.to_vector
+      (position - other).length
     end
 
     def direction_to(other)
-      (position - other.positon).normalized
+      other = other.to_vector
+      (other - position).normalized
+    end
+
+    def to_vector
+      position
     end
   end
 end

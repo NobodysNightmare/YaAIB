@@ -15,20 +15,24 @@ module YaAIB
       self / length
     end
 
+    def to_vector
+      self
+    end
+
     def +(other)
-      new(x + other.x, y + other.y)
+      Vector.new(x + other.x, y + other.y)
     end
 
     def -(other)
-      new(x - other.x, y - other.y)
+      Vector.new(x - other.x, y - other.y)
     end
 
     def *(scalar)
-      new(x * scalar, y * scalar)
+      Vector.new(x * scalar, y * scalar)
     end
 
     def /(scalar)
-      new(x / scalar, y / scalar)
+      Vector.new(x / scalar, y / scalar)
     end
   end
 end

@@ -4,7 +4,7 @@ module YaAIB
   class Fleet
     include Positioned
 
-    MOVEMENT_SPEED = 10
+    MOVEMENT_SPEED = 1
 
     attr_reader :size, :owner, :target
 
@@ -15,10 +15,19 @@ module YaAIB
       @target = target
     end
 
+    def dead?
+      size == 0
+    end
+
     def fly
       move_distance = [MOVEMENT_SPEED, distance_to(target)].min
       direction = direction_to(target)
-      @position += direction * distance
+      @position += direction * move_distance
+
+      if distance_to(target) < 0.1
+        target.accept_fleet(self)
+        @size = 0
+      end
     end
   end
 end
