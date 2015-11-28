@@ -7,11 +7,11 @@ module YaAIB
     attr_reader :regeneration, :owner
     attr_accessor :supply
 
-    def initialize(position, regeneration, owner: nil)
+    def initialize(position:, regeneration:, owner: nil, initial_supply: 0)
       @position = position
       @regeneration = regeneration
       @owner = owner
-      @supply = 0
+      @supply = initial_supply
     end
 
     def resupply

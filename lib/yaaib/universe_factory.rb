@@ -35,7 +35,10 @@ module YaAIB
 
     def create_planet(owner: nil)
       position = random_position
-      Planet.new(position, 1, owner: owner)
+      Planet.new(position: position,
+                 regeneration: 1,
+                 owner: owner,
+                 initial_supply: 10)
     end
 
     def random_position
