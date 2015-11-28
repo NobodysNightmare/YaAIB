@@ -8,6 +8,16 @@ He probably took the idea from someone else too, but I don't know that :)
 
 *Current look of the visual game runner*
 
+## Running
+
+````
+# Run a new random game
+ruby visual_runner.rb
+
+# Use a previously played seed
+ruby visual_runner.rb --seed 123456789
+````
+
 # Game mechanics
 
 ## Planets
