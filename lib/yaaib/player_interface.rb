@@ -24,13 +24,10 @@ module YaAIB
     end
 
     def send_fleet(source:, target:, size:)
-      if source.owner != player
-        fail InvalidMoveError, 'Source planet is not yours'
-      end
-
-      if size > source.supply
-        fail InvalidMoveError, 'Not enough supplies'
-      end
+      fail InvalidMoveError, 'Source planet is not yours' if source.owner != player
+      fail InvalidMoveError, 'Not enough supplies' if size > source.supply
+      fail InvalidMoveError, "Fleets can't have negative size" if size < 0
+      return if size == 0
 
       @fleets << Fleet.new(owner: player,
                            position: source.position,
