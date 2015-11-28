@@ -8,8 +8,8 @@ module YaAIB
     DEFAULT_HEIGHT = 100
     MIN_DISTANCE = 5
 
-    def initialize(planet_count, players, random, width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT)
-      @planet_count = planet_count
+    def initialize(planets_per_player, players, random, width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT)
+      @planets_per_player = planets_per_player
       @width = width
       @height = height
       @players = players
@@ -20,11 +20,11 @@ module YaAIB
     def build
       @players.each do |player|
         @planets << create_planet(owner: player)
-      end
 
-      (1..@planet_count).each do |_|
-        position = random_position
-        @planets << create_planet
+        (1..@planets_per_player).each do |_|
+          position = random_position
+          @planets << create_planet
+        end
       end
     end
 

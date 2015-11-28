@@ -19,7 +19,7 @@ class GameWindow < Gosu::Window
     self.caption = "Game Window"
 
     players = YaAIB::PlayerLoader.find_players(random)
-    factory = YaAIB::UniverseFactory.new(20, players, random)
+    factory = YaAIB::UniverseFactory.new(7, players, random)
     factory.build
 
     @simulation = YaAIB::Simulation.new(factory.planets, players)
