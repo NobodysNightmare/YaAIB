@@ -26,7 +26,7 @@ module YaAIB
         @supply -= fleet.size
       end
 
-      if supply <= 0
+      if supply < 0
         @owner = fleet.owner
         @supply = @supply.abs
       end
