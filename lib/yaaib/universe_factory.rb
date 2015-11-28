@@ -8,11 +8,12 @@ module YaAIB
     DEFAULT_HEIGHT = 100
     MIN_DISTANCE = 5
 
-    def initialize(planet_count, players, width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT)
+    def initialize(planet_count, players, random, width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT)
       @planet_count = planet_count
       @width = width
       @height = height
       @players = players
+      @random = random
       @planets = []
     end
 
@@ -42,7 +43,7 @@ module YaAIB
     end
 
     def random_position
-      position = Vector.new(rand(width), rand(height))
+      position = Vector.new(@random.rand(width), @random.rand(height))
       if planets.any? { |planet| planet.distance_to(position) < MIN_DISTANCE }
         random_position
       else

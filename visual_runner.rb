@@ -1,5 +1,6 @@
 $LOAD_PATH << 'lib'
 
+require 'bigdecimal'
 require 'gosu'
 
 require 'yaaib/simulation'
@@ -13,12 +14,12 @@ class GameWindow < Gosu::Window
   PLANET_FONT = Gosu::Font.new(20)
   FLEET_FONT = Gosu::Font.new(10)
 
-  def initialize(width, height)
+  def initialize(width, height, random)
     super(width, height)
     self.caption = "Game Window"
 
-    players = YaAIB::PlayerLoader.find_players
-    factory = YaAIB::UniverseFactory.new(20, players)
+    players = YaAIB::PlayerLoader.find_players(random)
+    factory = YaAIB::UniverseFactory.new(20, players, random)
     factory.build
 
     @simulation = YaAIB::Simulation.new(factory.planets, players)
@@ -67,5 +68,18 @@ class GameWindow < Gosu::Window
   end
 end
 
-window = GameWindow.new(640, 640)
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: visual_runner.rb [options]"
+
+  opts.on("-s seed", "--seed seed", String, "Specify seed to run") do |seed|
+    options[:seed] = BigDecimal.new(seed)
+  end
+end.parse!
+
+random = Random.new(options[:seed] || Random.new_seed)
+puts "Running with seed #{random.seed}"
+window = GameWindow.new(640, 640, random)
 window.show

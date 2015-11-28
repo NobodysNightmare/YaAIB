@@ -1,5 +1,11 @@
 module YaAIB
   class Player
+    attr_reader :rng
+
+    def initialize(rng)
+      @rng = rng
+    end
+
     def think(interface)
       fail 'implement your own think method'
     end
@@ -9,7 +15,7 @@ module YaAIB
     end
 
     def color
-      @color ||= [rand(255), rand(255), rand(255)]
+      @color ||= [rng.rand(255), rng.rand(255), rng.rand(255)]
     end
   end
 end
