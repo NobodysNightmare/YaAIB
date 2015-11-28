@@ -53,7 +53,7 @@ class GameWindow < Gosu::Window
   end
 
   def draw_fleets
-    size = 1 * @scale
+    size = 1.5 * @scale
     @simulation.fleets.each do |fleet|
       color = make_color(fleet.owner)
       screen_position = fleet.position * @scale
