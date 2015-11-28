@@ -11,8 +11,8 @@ module YaAIB
         end
       end
 
-      def name
-        self.class.name
+      def author
+        'NobodysNightmare'
       end
     end
   end

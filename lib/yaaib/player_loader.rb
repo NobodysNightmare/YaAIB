@@ -20,7 +20,7 @@ module YaAIB
       def log_players(players)
         puts "Loaded #{players.count} players:"
         players.each do |player|
-          puts " - #{player.name}"
+          puts " - #{player.name} (by #{player.author})"
         end
       end
     end

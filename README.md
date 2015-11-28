@@ -25,6 +25,25 @@ There can only be one. You have won, once no other player has planets anymore.
 
 # API for players
 
+## Basics
+
+Your AI will have to inherit from `YaAIB::Player` and your ruby file will have to reside under
+`lib/yaaib/players`.
+
+You can override the following methods:
+
+* `think(interface)` This will be called when it is time to make your turn. You can use the interface
+  to interact with the world
+* `name` Return a cool name for your AI. If you don't, its class name will be taken.
+* `author` Your name or the handle you go by, i.e. this is not the name of your AI, but yours.
+* `color` Return an array containing three RGB values between 0 and 255. Those will be used in the
+  visual runner to distinguish your AI from the others. If you don't override it, you get a random color
+  each round.
+
+The best documentation at the moment are other players, e.g. my silly `DumbFirePlayer`.
+
+## API documentation
+
 TODO
 
 # Things to do before this is fun

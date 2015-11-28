@@ -14,6 +14,10 @@ module YaAIB
       self.class.name
     end
 
+    def author
+      'anonymous'
+    end
+
     def color
       @color ||= [rng.rand(255), rng.rand(255), rng.rand(255)]
     end
