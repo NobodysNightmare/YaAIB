@@ -1,92 +1,9 @@
 $LOAD_PATH << 'lib'
 
 require 'bigdecimal'
-require 'gosu'
-
-require 'yaaib/simulation'
-require 'yaaib/player_loader'
-require 'yaaib/universe_factory'
-
-class GameWindow < Gosu::Window
-  UPDATE_INTERVAL = 0.1
-
-  NEUTRAL_COLOR = Gosu::Color.from_hsv(0, 0, 128)
-  PLANET_FONT = Gosu::Font.new(20)
-  FLEET_FONT = Gosu::Font.new(10)
-
-  def initialize(width, height, random)
-    super(width, height)
-    self.caption = "Game Window"
-
-    players = YaAIB::PlayerLoader.find_players(random)
-    factory = YaAIB::UniverseFactory.new(7, players, random)
-    factory.build
-
-    @simulation = YaAIB::Simulation.new(factory.planets, players)
-    @scale = width / factory.width
-    @last_update = Time.now
-    @ticks_per_second = 10
-    @background = Gosu::Image.new("assets/background.jpg")
-  end
-
-  def update
-    now = Time.now
-    return if @paused
-    if (now - @last_update) > (1.0 / @ticks_per_second)
-      @last_update = now
-      @simulation.run_cycle
-    end
-  end
-
-  def draw
-    draw_background
-    draw_planets
-    draw_fleets
-  end
-
-  def button_up(id)
-    if id == Gosu::KbComma
-      @ticks_per_second /= 2.0
-    elsif id == Gosu::KbPeriod
-      @ticks_per_second *= 2.0
-    elsif id == Gosu::KbSpace
-      @paused = !@paused
-    end
-  end
-
-  private
-
-  def draw_background
-    @background.draw(0, 0, 0)
-  end
-
-  def draw_planets
-    size = 5 * @scale
-    @simulation.planets.each do |planet|
-      screen_position = planet.position * @scale
-      color = planet.owner ? make_color(planet.owner) : NEUTRAL_COLOR
-      Gosu.draw_rect(screen_position.x - (size / 2), screen_position.y - (size / 2), size, size, color)
-      PLANET_FONT.draw_rel(planet.supply, screen_position.x, screen_position.y, 1, 0.5, 0.5)
-    end
-  end
-
-  def draw_fleets
-    size = 1.5 * @scale
-    @simulation.fleets.each do |fleet|
-      color = make_color(fleet.owner)
-      screen_position = fleet.position * @scale
-      Gosu.draw_rect(screen_position.x - (size / 2), screen_position.y - (size / 2), size, size, color)
-      FLEET_FONT.draw_rel(fleet.size, screen_position.x, screen_position.y, 1, 0.5, 0.5)
-    end
-  end
-
-  def make_color(player)
-    rgb = player.color
-    Gosu::Color.rgba(rgb[0], rgb[1], rgb[2], 255)
-  end
-end
-
 require 'optparse'
+
+require 'yaaib/visual_runner/window'
 
 options = {}
 OptionParser.new do |opts|
@@ -99,5 +16,5 @@ end.parse!
 
 random = Random.new(options[:seed] || Random.new_seed)
 puts "Running with seed #{random.seed}"
-window = GameWindow.new(640, 640, random)
+window = YaAIB::VisualRunner::Window.new(800, 600, random)
 window.show
