@@ -25,12 +25,14 @@ class GameWindow < Gosu::Window
     @simulation = YaAIB::Simulation.new(factory.planets, players)
     @scale = width / factory.width
     @last_update = Time.now
+    @ticks_per_second = 10
     @background = Gosu::Image.new("assets/background.jpg")
   end
 
   def update
     now = Time.now
-    if (now - @last_update) > UPDATE_INTERVAL
+    return if @paused
+    if (now - @last_update) > (1.0 / @ticks_per_second)
       @last_update = now
       @simulation.run_cycle
     end
@@ -40,6 +42,16 @@ class GameWindow < Gosu::Window
     draw_background
     draw_planets
     draw_fleets
+  end
+
+  def button_up(id)
+    if id == Gosu::KbComma
+      @ticks_per_second /= 2.0
+    elsif id == Gosu::KbPeriod
+      @ticks_per_second *= 2.0
+    elsif id == Gosu::KbSpace
+      @paused = !@paused
+    end
   end
 
   private
