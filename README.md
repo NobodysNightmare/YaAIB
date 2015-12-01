@@ -78,3 +78,7 @@ TODO
     * start new round
 * A competitive console runner
     * simulate many (thousands) of rounds and see who is best on average
+
+# Copyright notices
+
+This project is using third-party imagery (e.g. from NASA and ESA). please see the [copyright file](COPYRIGHT.md) for further information.

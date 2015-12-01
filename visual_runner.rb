@@ -25,6 +25,7 @@ class GameWindow < Gosu::Window
     @simulation = YaAIB::Simulation.new(factory.planets, players)
     @scale = width / factory.width
     @last_update = Time.now
+    @background = Gosu::Image.new("assets/background.jpg")
   end
 
   def update
@@ -36,11 +37,16 @@ class GameWindow < Gosu::Window
   end
 
   def draw
+    draw_background
     draw_planets
     draw_fleets
   end
 
   private
+
+  def draw_background
+    @background.draw(0, 0, 0)
+  end
 
   def draw_planets
     size = 5 * @scale
