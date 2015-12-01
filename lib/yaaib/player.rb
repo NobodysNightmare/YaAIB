@@ -11,7 +11,7 @@ module YaAIB
     end
 
     def name
-      self.class.name
+      self.class.name.split('::').last
     end
 
     def author
