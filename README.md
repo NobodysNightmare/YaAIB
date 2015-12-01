@@ -18,6 +18,14 @@ ruby visual_runner.rb
 ruby visual_runner.rb --seed 123456789
 ````
 
+## Controls
+
+| Key     | Function                         |
+| ------- | -------------------------------- |
+| `,`     | Slow down                        |
+| `.`     | Speed up                         |
+| `Space` | Pause                            |
+
 # Game mechanics
 
 ## Planets
