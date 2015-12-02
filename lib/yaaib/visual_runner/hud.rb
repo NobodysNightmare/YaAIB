@@ -1,9 +1,5 @@
 require 'gosu'
 
-require 'yaaib/simulation'
-require 'yaaib/player_loader'
-require 'yaaib/universe_factory'
-
 module YaAIB
   module VisualRunner
     class Hud
