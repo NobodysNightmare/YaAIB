@@ -2,6 +2,8 @@ require 'gosu'
 
 module YaAIB
   module VisualRunner
+    HUD_BASE_Z = 10
+
     class Hud
       PADDING = Vector.new(5, 5)
       BG_COLOR = Gosu::Color.rgba(0, 0, 0, 128)
@@ -31,7 +33,7 @@ module YaAIB
       private
 
       def draw_background
-        Gosu.draw_rect(@position.x, @position.y, @size.x, @size.y, BG_COLOR)
+        Gosu.draw_rect(@position.x, @position.y, @size.x, @size.y, BG_COLOR, HUD_BASE_Z)
       end
 
       def draw_players
@@ -48,14 +50,14 @@ module YaAIB
       def player_text(player, line)
         x = @position.x
         y = @position.y + PADDING.y + (FONT.height * line * 1.1)
-        Gosu.draw_rect(x, y, @size.x, FONT.height, make_color(player))
-        FONT.draw(player.name, x, y, 1, 1, 1, TEXT_COLOR)
+        Gosu.draw_rect(x, y, @size.x, FONT.height, make_color(player), HUD_BASE_Z + 1)
+        FONT.draw(player.name, x, y, HUD_BASE_Z + 2, 1, 1, TEXT_COLOR)
       end
 
       def bottom_text(text, line)
         x = @position.x + @size.x / 2
         y = @position.y + @size.y - PADDING.y - (FONT.height * line * 1.1)
-        FONT.draw_rel(text, x, y, 1, 0.5, 1.0, 1, 1, TEXT_COLOR)
+        FONT.draw_rel(text, x, y, HUD_BASE_Z + 2, 0.5, 1.0, 1, 1, TEXT_COLOR)
       end
 
       def make_color(player)

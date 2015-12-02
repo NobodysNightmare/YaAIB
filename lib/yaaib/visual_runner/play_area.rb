@@ -1,13 +1,17 @@
 require 'gosu'
 
+require 'yaaib/visual_runner/fleet_renderer'
+require 'yaaib/visual_runner/planet_renderer'
+
 module YaAIB
   module VisualRunner
     class PlayArea
       PADDING = Vector.new(5, 5)
 
-      NEUTRAL_COLOR = Gosu::Color.from_hsv(0, 0, 128)
-      PLANET_FONT = Gosu::Font.new(20)
-      FLEET_FONT = Gosu::Font.new(10)
+      PLANET_Z = 1
+      FLEET_Z = 2
+
+      NEUTRAL_COLOR = Gosu::Color.from_hsv(0, 0, 1)
 
       def initialize(position, size, simulation)
         @position = position + PADDING
@@ -30,22 +34,20 @@ module YaAIB
       end
 
       def draw_planets
-        size = 5 * @scale
+        size = 6 * @scale
         @simulation.planets.each do |planet|
           screen_position = @position + (planet.position * @scale)
           color = planet.owner ? make_color(planet.owner) : NEUTRAL_COLOR
-          Gosu.draw_rect(screen_position.x - (size / 2), screen_position.y - (size / 2), size, size, color)
-          PLANET_FONT.draw_rel(planet.supply, screen_position.x, screen_position.y, 1, 0.5, 0.5)
+          PlanetRenderer.draw(screen_position, PLANET_Z, size, color, planet.supply)
         end
       end
 
       def draw_fleets
         size = 1.5 * @scale
         @simulation.fleets.each do |fleet|
-          color = make_color(fleet.owner)
           screen_position = @position + (fleet.position * @scale)
-          Gosu.draw_rect(screen_position.x - (size / 2), screen_position.y - (size / 2), size, size, color)
-          FLEET_FONT.draw_rel(fleet.size, screen_position.x, screen_position.y, 1, 0.5, 0.5)
+          color = make_color(fleet.owner)
+          FleetRenderer.draw(screen_position, PLANET_Z, size, color, fleet.size)
         end
       end
 
