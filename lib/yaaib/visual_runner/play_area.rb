@@ -34,20 +34,18 @@ module YaAIB
       end
 
       def draw_planets
-        size = 6 * @scale
         @simulation.planets.each do |planet|
           screen_position = @position + (planet.position * @scale)
           color = planet.owner ? make_color(planet.owner) : NEUTRAL_COLOR
-          PlanetRenderer.draw(screen_position, PLANET_Z, size, color, planet.supply)
+          PlanetRenderer.draw(screen_position, PLANET_Z, color, planet.supply)
         end
       end
 
       def draw_fleets
-        size = 1.5 * @scale
         @simulation.fleets.each do |fleet|
           screen_position = @position + (fleet.position * @scale)
           color = make_color(fleet.owner)
-          FleetRenderer.draw(screen_position, PLANET_Z, size, color, fleet.size)
+          FleetRenderer.draw(screen_position, PLANET_Z, color, fleet.size)
         end
       end
 

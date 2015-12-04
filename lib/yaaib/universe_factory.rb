@@ -4,8 +4,8 @@ module YaAIB
   class UniverseFactory
     attr_reader :planets, :width, :height
 
-    DEFAULT_WIDTH = 100
-    DEFAULT_HEIGHT = 100
+    DEFAULT_WIDTH = 150
+    DEFAULT_HEIGHT = 110
     MIN_DISTANCE = 5
 
     def initialize(planets_per_player, players, random, width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT)

@@ -5,11 +5,12 @@ module YaAIB
     class PlanetRenderer
       class << self
         FONT = Gosu::Font.new(20)
+        SIZE = 48
 
-        def draw(position, z, size, color, text)
-          scale = size.to_f / overlay.width
-          tint.draw(position.x - (size / 2), position.y - (size / 2), z, scale, scale, color)
-          overlay.draw(position.x - (size / 2), position.y - (size / 2), z, scale, scale)
+        def draw(position, z, color, text)
+          scale = SIZE.to_f / overlay.width
+          tint.draw(position.x - (SIZE / 2), position.y - (SIZE / 2), z, scale, scale, color)
+          overlay.draw(position.x - (SIZE / 2), position.y - (SIZE / 2), z, scale, scale)
           FONT.draw_rel(text, position.x, position.y, 1, 0.5, 0.5)
         end
 

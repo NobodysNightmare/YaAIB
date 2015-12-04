@@ -18,7 +18,7 @@ module YaAIB
         factory.build
 
         @simulation = YaAIB::Simulation.new(factory.planets, players)
-        play_area_width = (factory.width / factory.height) * height
+        play_area_width = (factory.width.to_f / factory.height.to_f) * height.to_f
         @play_area = PlayArea.new(Vector.new(0, 0),
                                   Vector.new(play_area_width, height),
                                   @simulation)

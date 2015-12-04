@@ -16,5 +16,5 @@ end.parse!
 
 random = Random.new(options[:seed] || Random.new_seed)
 puts "Running with seed #{random.seed}"
-window = YaAIB::VisualRunner::Window.new(800, 600, random)
+window = YaAIB::VisualRunner::Window.new(1280, 720, random)
 window.show
