@@ -15,6 +15,10 @@ module YaAIB
       self / length
     end
 
+    def to_s
+      "(#{x} | #{y})"
+    end
+
     def to_vector
       self
     end
