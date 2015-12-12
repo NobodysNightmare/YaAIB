@@ -1,14 +1,19 @@
-require 'yaaib/fleet'
-require 'yaaib/invalid_move_error'
+require 'yaaib/commands/send_fleet'
+require 'yaaib/fake_planet'
 
 module YaAIB
   class PlayerInterface
     attr_reader :planets, :fleets, :player
 
     def initialize(planets, fleets, player)
-      @planets = planets
-      @fleets = fleets
+      @planets = planets.map { |planet| FakePlanet.new(planet) }
+      @fleets = fleets.dup
       @player = player
+      @commands = []
+    end
+
+    def find_planet(position)
+      @planets.detect { |planet| planet.position == position }
     end
 
     def allied_planets
@@ -24,16 +29,18 @@ module YaAIB
     end
 
     def send_fleet(source:, target:, size:)
-      fail InvalidMoveError, 'Source planet is not yours' if source.owner != player
-      fail InvalidMoveError, 'Not enough supplies' if size > source.supply
-      fail InvalidMoveError, "Fleets can't have negative size" if size < 0
-      return if size == 0
+      command = Commands::SendFleet.new source: source,
+                                        target: target,
+                                        size: size,
+                                        player: player
+      @commands << command
+      command.execute(self)
+    end
 
-      @fleets << Fleet.new(owner: player,
-                           position: source.position,
-                           size: size,
-                           target: target)
-      source.supply -= size
+    def apply_commands(environment)
+      @commands.each do |command|
+        command.execute(environment)
+      end
     end
   end
 end

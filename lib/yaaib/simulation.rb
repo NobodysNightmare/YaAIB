@@ -15,12 +15,17 @@ module YaAIB
       simulate_environment
     end
 
+    def find_planet(position)
+      @planets.detect { |planet| planet.position == position }
+    end
+
     private
 
     def players_think
       players.each do |player|
         interface = PlayerInterface.new(planets, fleets, player)
         player.think(interface)
+        interface.apply_commands(self)
       end
     end
 
