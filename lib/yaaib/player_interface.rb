@@ -1,4 +1,5 @@
 require 'yaaib/commands/send_fleet'
+require 'yaaib/fake_fleet'
 require 'yaaib/fake_planet'
 
 module YaAIB
@@ -7,7 +8,7 @@ module YaAIB
 
     def initialize(planets, fleets, player)
       @planets = planets.map { |planet| FakePlanet.new(planet) }
-      @fleets = fleets.dup
+      @fleets = fleets.map { |fleet| FakeFleet.new(self, fleet) }
       @player = player
       @commands = []
     end
