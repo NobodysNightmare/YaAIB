@@ -22,8 +22,11 @@ module YaAIB
     private
 
     def players_think
-      players.each do |player|
-        interface = PlayerInterface.new(planets, fleets, player)
+      interfaces_and_players = players.map { |player|
+        [PlayerInterface.new(planets, fleets, player), player]
+      }
+
+      interfaces_and_players.each do |interface, player|
         player.think(interface)
         interface.apply_commands(self)
       end
