@@ -76,12 +76,8 @@ TODO
     * better scaling of planet count
 * Add more helpful APIs
     * query incoming fleets per planet
-* Better cheat protection
-    * **yes you could cheat** (e.g. add 1000 to your planets supplies)
-    * at least do some basic separation to avoid unintended cheats (i.e. AI-bugs)
 * A better visual runner
     * more appealing graphics
-    * control simulation speed
     * screen for end of round
     * start new round
 * A competitive console runner
