@@ -4,7 +4,7 @@ This game is all about writing your own Ruby AI to conquer the universe.
 I totally ripped this idea from a former co-student who implemented a similar game in Java, dubbed *Cycles of War*.
 He probably took the idea from someone else too, but I don't know that :)
 
-![In-Game Screenshot](https://cloud.githubusercontent.com/assets/453584/11515915/b98f3360-9880-11e5-8b50-95cf4b010f1f.png)
+![In-Game Screenshot](https://cloud.githubusercontent.com/assets/453584/11789657/f000d108-a297-11e5-97ea-e9070dd0f958.png)
 
 *Current look of the visual game runner*
 

@@ -9,3 +9,7 @@ and the Hubble Space Telescope Orion Treasury Project Team.
 I believe it is awesome that such pictures are made available in such an open fashion.
 Check out the original (324 MP!) in the [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Orion_Nebula_-_Hubble_2006_mosaic_18000.jpg)
 or check out http://hubblesite.org/
+
+## Planet and Fleet assets
+
+The assets for planets and fleets were created by [Alexander Holz](http://alexholz.com/).
