@@ -12,4 +12,5 @@ or check out http://hubblesite.org/
 
 ## Planet and Fleet assets
 
-The assets for planets and fleets were created by [Alexander Holz](http://alexholz.com/).
+The assets for planets and fleets were sponsored by [Alexander Holz](http://alexholz.com/).
+He provided them under the conditions of a [CC-BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/).
